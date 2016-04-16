@@ -2,19 +2,16 @@ class Homework():
     def __init__(self):
         pass
 
-    def get_most_common_substring(self,s):
-        substring = {}
-        max_value = 0
-        for i in range(len(s)):
-            count = 0
-            sub_value  = s[i]
-            while i+1 < len(s) and s[i] <= s[i+1]:
-                count += 1
-                i += 1
-                sub_value += s[i]
-            substring[count] = substring.get(count, sub_value)
-            max_value = max(substring.keys())
-        return s.count(substring[max_value])
+    def get_most_common_substring(self,str):
+        ss = ''
+        for s in str:
+            ss+=s
+            substring = ''
+            for i in range(int(len(str)/len(ss))):
+                substring+=ss
+            if str == substring and len(str) != len(ss):
+                return len(ss)
+        return 1
 
     def _angle_k(self,x1,y1,x2,y2):
         return (y2-y1)/(x2-x1)
@@ -37,18 +34,20 @@ class Homework():
         except:
             return 'NO'
 
+    def get_int_array_from_inupt(self):
+        return [int(x) for x in input().split(',')]
+
+
 
 hw = Homework()
 
 hw1 = hw.get_object_properties_without_undersocre_in_name(1)
 print(hw1)
 
-hw2_arr = [int(x) for x in input().split(',')]
-hw2 = hw.get_second_max(hw2_arr)
+hw2 = hw.get_second_max(hw.get_int_array_from_inupt())
 print(hw2)
 
-hw3_arr = [int(x) for x in input().split(',')]
-hw3 = hw.is_parallel(hw3_arr)
+hw3 = hw.is_parallel(hw.get_int_array_from_inupt())
 print(hw3)
 
 hw4 = hw.get_most_common_substring(input())
